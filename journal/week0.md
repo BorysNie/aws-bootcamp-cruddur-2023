@@ -52,4 +52,5 @@
 
 ### Lucid charts<p>
 - [Week 0 - Lucid charts Napkin diagram](https://lucid.app/lucidchart/3b2a2614-d9da-459a-8416-63596c6f58d2/edit?invitationId=inv_53b32dfe-39e9-44d6-a8a8-c7bac168f0cd)<br>
-- [Week 0 - Lucid charts Architectual diagram](https://lucid.app/lucidchart/fadd43a0-2824-49fc-b00d-62a8e1ad5da2/edit?invitationId=inv_96d3fde1-71d4-4744-b9b9-0e917663468d)<br>
+- [Week 0 - Lucid charts Architectual diagram](https://lucid.app/lucidchart/6f0531e7-db41-4a1f-a653-631e9a1a5e12/edit?viewport_loc=-76%2C-76%2C2304%2C1183%2C0_0&invitationId=inv_88cd74dd-133e-420f-8f39-e38324a8696f)<br>
+- [Week 0 - Lucid charts Architectual diagram K8s](https://lucid.app/lucidchart/fadd43a0-2824-49fc-b00d-62a8e1ad5da2/edit?invitationId=inv_96d3fde1-71d4-4744-b9b9-0e917663468d)<br>

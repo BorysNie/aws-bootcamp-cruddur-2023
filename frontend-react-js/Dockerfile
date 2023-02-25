@@ -8,5 +8,7 @@ WORKDIR /frontend-react-js
 
 RUN npm install
 
+HEALTHCHECK --interval=12s --timeout=12s --start-period=30s \
+    CMD node healthcheck.js
+
 EXPOSE ${PORT}
-CMD ["npm", "start"]

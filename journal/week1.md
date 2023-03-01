@@ -18,7 +18,7 @@
 
 - Dockerize the frontend and backend application
 - Create docker compose file to build and spin up services ie.
-  - Frontend and backend, including their ports including custom network
+  - Frontend and backend, including their ports and custom network
   - PostgreSQL database with docker volume
   - DynamoDB database with local volume bind
 <br>
@@ -71,7 +71,7 @@ docker rm $(docker ps --all --quiet)
 docker rmi $(docker image ls --all --quiet)
 ```
 - Docker remove **all**!<br>
-The following will remove all stopped containers, custom networks and dangling images as well as build cache be cautious!
+The following will remove all stopped containers, custom networks, volumes and dangling images as well as build cache be cautious!
 ```sh
 docker system prune --all --force --volumes
 ```

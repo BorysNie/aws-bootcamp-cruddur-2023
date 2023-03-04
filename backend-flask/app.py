@@ -14,6 +14,10 @@ from services.notifications_activities import *
 from services.create_message import *
 from services.show_activity import *
 
+# AWS X-Ray imports
+from aws_xray_sdk.core import xray_recorder
+from aws_xray_sdk.ext.flask.middleware import XRayMiddleware
+
 app = Flask(__name__)
 frontend = os.getenv('FRONTEND_URL')
 backend = os.getenv('BACKEND_URL')
@@ -25,6 +29,11 @@ cors = CORS(
   allow_headers="content-type,if-modified-since",
   methods="OPTIONS,GET,HEAD,POST"
 )
+
+# AWS X-Ray imports
+xray_url = os.getenv("AWS_XRAY_URL")
+xray_recorder.configure(service="backend-flask", dynamic_naming=xray_url)
+XRayMiddleware(app, xray_recorder)
 
 @app.route("/api/message_groups", methods=['GET'])
 def data_message_groups():

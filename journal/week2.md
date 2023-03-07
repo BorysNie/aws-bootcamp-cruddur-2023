@@ -15,4 +15,7 @@ aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
 - issues with formatting home activities to add results span
 - xray issues retrieving aws ec2 metadata (container running and port not open)
 - change env var to AWS_REGION for xray daemon
--
+
+- create cloudwatch logging and add it to home activities
+
+- add rollbar test to app route and init

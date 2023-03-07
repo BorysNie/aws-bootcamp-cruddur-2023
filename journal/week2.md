@@ -8,3 +8,8 @@ aws xray create-group --group-name "Cruddr" --filter-expression "service(\"backe
 - create aws sampling rule
 aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
 - add to docker compose file xray daemon service
+
+- watch honecomb livestream setup
+- encountered issues setting up honecomb and getting containers to work as per video (issues with import within home activities)
+- following traces in honeycomb were successful
+- 

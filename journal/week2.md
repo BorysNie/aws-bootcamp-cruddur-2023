@@ -12,4 +12,7 @@ aws xray create-sampling-rule --cli-input-json file://aws/json/xray.json
 - watch honecomb livestream setup
 - encountered issues setting up honecomb and getting containers to work as per video (issues with import within home activities)
 - following traces in honeycomb were successful
-- 
+- issues with formatting home activities to add results span
+- xray issues retrieving aws ec2 metadata (container running and port not open)
+- change env var to AWS_REGION for xray daemon
+-

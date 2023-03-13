@@ -4,4 +4,8 @@
 - Add Amplify hook to cognitor pool to frontend app
 - Cognito set admin user password
 - Modify cognito user attributes
+- Create new user via Cruddr and convirm unverified email
+- Verify email verification code
+- Sign in as the new user
+- Verify password reset and verification code retrieval system
 -

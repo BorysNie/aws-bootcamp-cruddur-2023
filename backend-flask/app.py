@@ -14,6 +14,9 @@ from services.notifications_activities import *
 from services.create_message import *
 from services.show_activity import *
 
+# Import custom JWT module
+from lib.cognito_jwt_token import CognitoJWTToken, extract_access_token
+
 # HoneyComb imports
 from opentelemetry import trace
 from opentelemetry.instrumentation.flask import FlaskInstrumentor
@@ -68,10 +71,16 @@ origins = [frontend, backend]
 cors = CORS(
   app,
   resources={r"/api/*": {"origins": origins}},
-  expose_headers="location,link",
-  allow_headers="content-type,if-modified-since",
+  headers=['Content-Type', 'Authorization'],
+  expose_headers='Authorization',
   methods="OPTIONS,GET,HEAD,POST"
 )
+
+# AWS Cognito init
+cognito_jwt_token = CognitoJWTToken(
+  os.getenv("AWS_COGNITO_USER_POOL_ID"),
+  os.getenv("AWS_COGNITO_USER_POOL_CLIENT_ID"),
+  os.getenv("AWS_DEFAULT_REGION"))
 
 # AWS X-Ray init recorder and middleware services
 xray_url = os.getenv("AWS_XRAY_URL")
@@ -134,7 +143,16 @@ def data_create_message():
 @app.route("/api/activities/home", methods=['GET'])
 @xray_recorder.capture("activities_home")
 def data_home():
-  data = HomeActivities.run(logger=LOGGER)
+  access_token = extract_access_token(request.headers)
+  try:
+    claims = cognito_jwt_token.verify(access_token)
+    app.logger.debug(f"Tocken authenticated: {access_token}")
+    data = HomeActivities.run(logger=LOGGER, cognito_user_id=claims['username'])
+    app.logger.debug(claims)
+  except TokenVerifyError as exc:
+    _ = request.data
+    app.logger.debug(f"Tocken unauthenticated: {exc}")
+
   return data, 200
 
 @app.route("/api/activities/notifications", methods=['GET'])

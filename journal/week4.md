@@ -8,4 +8,5 @@
 - Validate existance of activities and users tables
 - Create seed, session and setup bash scripts
 - Bundle scripts together for easier deployment
+- Add script which rotates the SG IP
 -

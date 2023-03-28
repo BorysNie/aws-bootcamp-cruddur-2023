@@ -15,7 +15,7 @@ from services.create_message import *
 from services.show_activity import *
 
 # Import custom JWT module
-from lib.cognito_jwt_token import CognitoJWTToken, extract_access_token
+from lib.cognito_jwt_token import CognitoJWTToken, TokenVerifyError, extract_access_token
 
 # HoneyComb imports
 from opentelemetry import trace
@@ -147,6 +147,7 @@ def data_home():
   try:
     claims = cognito_jwt_token.verify(access_token)
     app.logger.debug(f"Tocken authenticated: {access_token}")
+    app.logger.debug(claims['username'])
     data = HomeActivities.run(logger=LOGGER, cognito_user_id=claims['username'])
     app.logger.debug(claims)
   except TokenVerifyError as exc:

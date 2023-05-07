@@ -87,15 +87,15 @@ xray_url = os.getenv("AWS_XRAY_URL")
 xray_recorder.configure(service="backend-flask", dynamic_naming=xray_url)
 XRayMiddleware(app, xray_recorder)
 
-rollbar_access_token = os.getenv("ROLLBAR_ACCESS_TOKEN")
-@app.before_first_request
-def init_rollbar():
-  rollbar.init(
-    rollbar_access_token,
-    "production",
-    root = os.path.dirname(os.path.relpath(__file__)), # server root dir
-    allow_logging_basic_config=False
-  )
+# rollbar_access_token = os.getenv("ROLLBAR_ACCESS_TOKEN")
+# @app.before_first_request
+# def init_rollbar():
+#   rollbar.init(
+#     rollbar_access_token,
+#     "production",
+#     root = os.path.dirname(os.path.relpath(__file__)), # server root dir
+#     allow_logging_basic_config=False
+#   )
 
 # Cloudwatch logs after each request
 @app.after_request
@@ -211,10 +211,14 @@ def data_activities_reply(activity_uuid):
     return model['data'], 200
   return
 
-@app.route("/rollbar/test")
-def rollbar_test():
-  rollbar.report_message("Rollbar reports Hello World!", "warning")
-  return "Rollbar Hello World!"
+# @app.route("/rollbar/test")
+# def rollbar_test():
+#   rollbar.report_message("Rollbar reports Hello World!", "warning")
+#   return "Rollbar Hello World!"
+
+@app.route('/api/health-check')
+def health_check():
+  return {'success': True}, 200
 
 if __name__ == "__main__":
   app.run(debug=True)

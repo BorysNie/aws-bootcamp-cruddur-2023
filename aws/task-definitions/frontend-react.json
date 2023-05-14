@@ -1,7 +1,7 @@
 {
     "family": "frontend-react-js",
-    "executionRoleArn": "arn:aws:iam::AWS_ACCOUNT_ID:role/CruddurServiceExecutionRole",
-    "taskRoleArn": "arn:aws:iam::AWS_ACCOUNT_ID:role/CruddurTaskRole",
+    "executionRoleArn": "arn:aws:iam::092215117743:role/CruddurServiceExecutionRole",
+    "taskRoleArn": "arn:aws:iam::092215117743:role/CruddurTaskRole",
     "networkMode": "awsvpc",
     "containerDefinitions": [
       {
